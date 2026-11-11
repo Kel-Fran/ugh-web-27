@@ -1,15 +1,41 @@
+<% const { entries = [] } = locals; %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <%= title %>
+        fw
     </title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1><%= title %></h1>
-    Hello EJS!
+    <form method="POST">
+        <label for="priority">priority</label>
+        <input type="number" name="priority">
+        <label for="mac">mac</label>
+        <input type="text" name="mac">
+        <label for="enabled">enabled</label>
+        <input type="checkbox" name="enabled">
+        <input type="submit">
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>priority</th>
+                <th>MAC</th>
+                <th>enabled</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const entry of entries) { %>
+                <tr style="<%= entry.enabled ? "" : "color:gray;font-style:italic"%>">
+                    <td><%= entry.priority %></td>
+                    <td><%= entry.mac %></td>
+                    <td><%= entry.enabled ? "yes" : "no" %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
 </body>
 </html>
